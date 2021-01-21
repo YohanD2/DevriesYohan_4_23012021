@@ -20,162 +20,190 @@
     <section role="main" class="main">
     <h1 class="title">DECOUVREZ NOS OURS EN PELUCHE FAITS A LA MAIN</h1>
     <div class="content__homeBox">
-        <div class="homeBox">
+
+        <!--
+            DESCRIPTION
+ <div class="homeBox">
             <div class="homeBox__visual">
-                <img src="./images/oak_1.jpg" alt="Description de l'objet">
-                <button>
-                    <p>
-                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M24.8889 3.11111V24.8889H3.11111V3.11111H24.8889ZM26.6 0H1.4C0.622222 0 0 0.622222 0 1.4V26.6C0 27.2222 0.622222 28 1.4 28H26.6C27.2222 28 28 27.2222 28 26.6V1.4C28 0.622222 27.2222 0 26.6 0ZM12.4444 6.22222H21.7778V9.33333H12.4444V6.22222ZM12.4444 12.4444H21.7778V15.5556H12.4444V12.4444ZM12.4444 18.6667H21.7778V21.7778H12.4444V18.6667ZM6.22222 6.22222H9.33333V9.33333H6.22222V6.22222ZM6.22222 12.4444H9.33333V15.5556H6.22222V12.4444ZM6.22222 18.6667H9.33333V21.7778H6.22222V18.6667Z" fill="white"/>
-                            </svg>
-                             Fiche produit
-                    </p>
-                </button>
-            </div>
-            <div class="homeBox__description">
-                <p>
-                    Nom de l'objet
-                </p>
-                <p class="strong">
-                    Prix €
-                </p>
-                <span class="addCard" data-test="1">
-                    <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M10 8H12V5H15V3H12V0H10V3H7V5H10V8ZM6 17C4.9 17 4.01 17.9 4.01 19C4.01 20.1 4.9 21 6 21C7.1 21 8 20.1 8 19C8 17.9 7.1 17 6 17ZM16 17C14.9 17 14.01 17.9 14.01 19C14.01 20.1 14.9 21 16 21C17.1 21 18 20.1 18 19C18 17.9 17.1 17 16 17ZM6.17 13.75L6.2 13.63L7.1 12H14.55C15.3 12 15.96 11.59 16.3 10.97L20.16 3.96L18.42 3H18.41L17.31 5L14.55 10H7.53L7.4 9.73L5.16 5L4.21 3L3.27 1H0V3H2L5.6 10.59L4.25 13.04C4.09 13.32 4 13.65 4 14C4 15.1 4.9 16 6 16H18V14H6.42C6.29 14 6.17 13.89 6.17 13.75Z" fill="#8F5BFE"/>
-                        </svg>
-                        
-                </span>
+                <img src="./images/oak_1.jpg" alt="Description de l'objet">                    
             </div>
         </div>
+        <h2>Description</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis voluptatibus officia ipsam corrupti rem velit praesentium quas culpa! Asperiores dolor, nobis nostrum dolorum neque corrupti odit officia harum id mollitia. 
+        </p>
 
+        <h2>Couleur</h2>
+        <select name="pets" id="pet-select">
+            <option value="">--Please choose an option--</option>
+            <option value="dog">Dog</option>
+            <option value="cat">Cat</option>
+            <option value="hamster">Hamster</option>
+            <option value="parrot">Parrot</option>
+        </select>
+        <button class="callToAction">Ajouter au panier</button>
 
-        <div class="homeBox">
-            <div class="homeBox__visual">
-                <img src="./images/oak_1.jpg" alt="Description de l'objet">
-                <button>
-                    <p>
-                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M24.8889 3.11111V24.8889H3.11111V3.11111H24.8889ZM26.6 0H1.4C0.622222 0 0 0.622222 0 1.4V26.6C0 27.2222 0.622222 28 1.4 28H26.6C27.2222 28 28 27.2222 28 26.6V1.4C28 0.622222 27.2222 0 26.6 0ZM12.4444 6.22222H21.7778V9.33333H12.4444V6.22222ZM12.4444 12.4444H21.7778V15.5556H12.4444V12.4444ZM12.4444 18.6667H21.7778V21.7778H12.4444V18.6667ZM6.22222 6.22222H9.33333V9.33333H6.22222V6.22222ZM6.22222 12.4444H9.33333V15.5556H6.22222V12.4444ZM6.22222 18.6667H9.33333V21.7778H6.22222V18.6667Z" fill="white"/>
-                            </svg>
-                             Fiche produit
-                    </p>
-                </button>
+        -->
+       
+       </address>
+        <form onsubmit="validationForm()">
+            <div class="formOrder">
+              <label for="Lastname">Prénom :</label>
+              <input type="text" name="firstname" id="firstname" >
             </div>
-            <div class="homeBox__description">
-                <p>
-                    Nom de l'objet
-                </p>
-                <p class="strong">
-                    Prix €
-                </p>
-                <span class="addCard" data-test="2">
-                    <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M10 8H12V5H15V3H12V0H10V3H7V5H10V8ZM6 17C4.9 17 4.01 17.9 4.01 19C4.01 20.1 4.9 21 6 21C7.1 21 8 20.1 8 19C8 17.9 7.1 17 6 17ZM16 17C14.9 17 14.01 17.9 14.01 19C14.01 20.1 14.9 21 16 21C17.1 21 18 20.1 18 19C18 17.9 17.1 17 16 17ZM6.17 13.75L6.2 13.63L7.1 12H14.55C15.3 12 15.96 11.59 16.3 10.97L20.16 3.96L18.42 3H18.41L17.31 5L14.55 10H7.53L7.4 9.73L5.16 5L4.21 3L3.27 1H0V3H2L5.6 10.59L4.25 13.04C4.09 13.32 4 13.65 4 14C4 15.1 4.9 16 6 16H18V14H6.42C6.29 14 6.17 13.89 6.17 13.75Z" fill="#8F5BFE"/>
-                        </svg>
-                        
-                </span>
+            <div class="formOrder">
+              <label for="Lastname">Nom :</label>
+              <input type="text" name="Lastname" id="Lastname" >
             </div>
-        </div>
+            <div class="formOrder">
+                <label for="email">E-mail :</label>
+                <input type="email" name="email" id="email" >
+              </div>
+              <div class="formOrder">
+                <label for="address">Adresse :</label>
+                <input type="text" name="address" id="address" >
+              </div>
+              <div class="formOrder">
+                <label for="city">Ville :</label>
+                <input type="text" name="city" id="city" >
+              </div>
+            <div class="formOrder">
+              <input type="submit" value="Valider">
+            </div>
+          </form>
+          
 
-
-        <div class="homeBox">
-            <div class="homeBox__visual">
-                <img src="./images/oak_1.jpg" alt="Description de l'objet">
-                <button>
-                    <p>
-                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M24.8889 3.11111V24.8889H3.11111V3.11111H24.8889ZM26.6 0H1.4C0.622222 0 0 0.622222 0 1.4V26.6C0 27.2222 0.622222 28 1.4 28H26.6C27.2222 28 28 27.2222 28 26.6V1.4C28 0.622222 27.2222 0 26.6 0ZM12.4444 6.22222H21.7778V9.33333H12.4444V6.22222ZM12.4444 12.4444H21.7778V15.5556H12.4444V12.4444ZM12.4444 18.6667H21.7778V21.7778H12.4444V18.6667ZM6.22222 6.22222H9.33333V9.33333H6.22222V6.22222ZM6.22222 12.4444H9.33333V15.5556H6.22222V12.4444ZM6.22222 18.6667H9.33333V21.7778H6.22222V18.6667Z" fill="white"/>
-                            </svg>
-                             Fiche produit
-                    </p>
-                </button>
-            </div>
-            <div class="homeBox__description">
-                <p>
-                    Nom de l'objet
-                </p>
-                <p class="strong">
-                    Prix €
-                </p>
-                <span class="addCard" data-test="3">
-                    <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M10 8H12V5H15V3H12V0H10V3H7V5H10V8ZM6 17C4.9 17 4.01 17.9 4.01 19C4.01 20.1 4.9 21 6 21C7.1 21 8 20.1 8 19C8 17.9 7.1 17 6 17ZM16 17C14.9 17 14.01 17.9 14.01 19C14.01 20.1 14.9 21 16 21C17.1 21 18 20.1 18 19C18 17.9 17.1 17 16 17ZM6.17 13.75L6.2 13.63L7.1 12H14.55C15.3 12 15.96 11.59 16.3 10.97L20.16 3.96L18.42 3H18.41L17.31 5L14.55 10H7.53L7.4 9.73L5.16 5L4.21 3L3.27 1H0V3H2L5.6 10.59L4.25 13.04C4.09 13.32 4 13.65 4 14C4 15.1 4.9 16 6 16H18V14H6.42C6.29 14 6.17 13.89 6.17 13.75Z" fill="#8F5BFE"/>
-                        </svg>
-                        
-                </span>
-            </div>
-        </div>
+        
     </div>
-
-
-
     </section>
 </body>
 <script>
 
+function checkEmail(email) {
+    let regex = /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim;
+    let found = email.match(regex);
+    console.log(found);
+    if(found != null) {
+        return email;
+    } else {
+        return found;
+    }
+}
+
+function validationForm(){
+    let inputs = document.getElementsByClassName('formOrder');
+    console.log(inputs);
+    for (var i = 0; i < inputs.length; i++) {
+        let input = inputs[i].getElementsByTagName('input')[0];
+        console.log(input);
+        if (input.type == "text") {
+            console.log(input.value);
+        }
+        if (input.type == "email") {
+            let result = checkEmail(input.value);
+            alert(result);
+        }
+    }
+    alert('stop');
+}
 
 // AU CHARGEMENT DE LA PAGE :
+
 /*
 var request = new XMLHttpRequest();
-            request.onreadystatechange = function() {
-                if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-                    var response = JSON.parse(this.responseText);
-                    var parent = document.getElementById("content__homeBox");
+request.onreadystatechange = function() {
+    if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+        var response = JSON.parse(this.responseText);
+        var parent = document.getElementsByClassName('content__homeBox')[0];
+
+        response.forEach(function(value){
+
+            let t = document.createElement('div');
+            t.innerHTML = 
+            `
+            <div class="homeBox">
+                <div class="homeBox__visual">
+                    <img src="${value['imageUrl']}" alt="Description de l'objet">
+                    <button class="see__description" data-id="${value['_id']}">
+                        <p>
+                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M24.8889 3.11111V24.8889H3.11111V3.11111H24.8889ZM26.6 0H1.4C0.622222 0 0 0.622222 0 1.4V26.6C0 27.2222 0.622222 28 1.4 28H26.6C27.2222 28 28 27.2222 28 26.6V1.4C28 0.622222 27.2222 0 26.6 0ZM12.4444 6.22222H21.7778V9.33333H12.4444V6.22222ZM12.4444 12.4444H21.7778V15.5556H12.4444V12.4444ZM12.4444 18.6667H21.7778V21.7778H12.4444V18.6667ZM6.22222 6.22222H9.33333V9.33333H6.22222V6.22222ZM6.22222 12.4444H9.33333V15.5556H6.22222V12.4444ZM6.22222 18.6667H9.33333V21.7778H6.22222V18.6667Z" fill="white"/>
+                                </svg>
+                                Fiche produit
+                        </p>
+                    </button>
+                </div>
+                <div class="homeBox__description">
+                    <p>
+                        ${value['name']}
+                    </p>
+                    <p class="strong">
+                        ${value['price']} €
+                    </p>
+                    <span class="addCart" data-test="1">
+                        <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 8H12V5H15V3H12V0H10V3H7V5H10V8ZM6 17C4.9 17 4.01 17.9 4.01 19C4.01 20.1 4.9 21 6 21C7.1 21 8 20.1 8 19C8 17.9 7.1 17 6 17ZM16 17C14.9 17 14.01 17.9 14.01 19C14.01 20.1 14.9 21 16 21C17.1 21 18 20.1 18 19C18 17.9 17.1 17 16 17ZM6.17 13.75L6.2 13.63L7.1 12H14.55C15.3 12 15.96 11.59 16.3 10.97L20.16 3.96L18.42 3H18.41L17.31 5L14.55 10H7.53L7.4 9.73L5.16 5L4.21 3L3.27 1H0V3H2L5.6 10.59L4.25 13.04C4.09 13.32 4 13.65 4 14C4 15.1 4.9 16 6 16H18V14H6.42C6.29 14 6.17 13.89 6.17 13.75Z" fill="#8F5BFE"/>
+                            </svg>
+                            
+                    </span>
+                </div>
+            </div>
+            `;
+
+            parent.append(t);
+        }); 
+    }
+};
 
 
-                    response.forEach(function(value){
-
-                        let box = 
-                        `
-                        <div class="homeBox">
-                            <div class="homeBox__visual">
-                                <img src="./images/oak_1.jpg" alt="Description de l'objet">
-                                <button>
-                                    <span>
-
-                                    </span>
-                                    <p>
-                                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M24.8889 3.11111V24.8889H3.11111V3.11111H24.8889ZM26.6 0H1.4C0.622222 0 0 0.622222 0 1.4V26.6C0 27.2222 0.622222 28 1.4 28H26.6C27.2222 28 28 27.2222 28 26.6V1.4C28 0.622222 27.2222 0 26.6 0ZM12.4444 6.22222H21.7778V9.33333H12.4444V6.22222ZM12.4444 12.4444H21.7778V15.5556H12.4444V12.4444ZM12.4444 18.6667H21.7778V21.7778H12.4444V18.6667ZM6.22222 6.22222H9.33333V9.33333H6.22222V6.22222ZM6.22222 12.4444H9.33333V15.5556H6.22222V12.4444ZM6.22222 18.6667H9.33333V21.7778H6.22222V18.6667Z" fill="white"/>
-                                            </svg>
-                                            Fiche produit
-                                    </p>
-                                </button>
-                            </div>
-                            <div class="homeBox__description">
-                                <p>
-                                    Nom de l'objet
-                                </p>
-                                <p class="strong">
-                                    Prix €
-                                </p>
-                                <span class="addCard" data-test="3">
-                                    <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M10 8H12V5H15V3H12V0H10V3H7V5H10V8ZM6 17C4.9 17 4.01 17.9 4.01 19C4.01 20.1 4.9 21 6 21C7.1 21 8 20.1 8 19C8 17.9 7.1 17 6 17ZM16 17C14.9 17 14.01 17.9 14.01 19C14.01 20.1 14.9 21 16 21C17.1 21 18 20.1 18 19C18 17.9 17.1 17 16 17ZM6.17 13.75L6.2 13.63L7.1 12H14.55C15.3 12 15.96 11.59 16.3 10.97L20.16 3.96L18.42 3H18.41L17.31 5L14.55 10H7.53L7.4 9.73L5.16 5L4.21 3L3.27 1H0V3H2L5.6 10.59L4.25 13.04C4.09 13.32 4 13.65 4 14C4 15.1 4.9 16 6 16H18V14H6.42C6.29 14 6.17 13.89 6.17 13.75Z" fill="#8F5BFE"/>
-                                        </svg>
-                                        
-                                </span>
-                            </div>
-                        </div>
-                        `;
-
-                        parent.prepend(box);
-                    }); 
-                }
-            };
-            let url = "http://localhost:3000/api/teddies/";
-            request.open("GET", url);
-            request.send();
+let url = "http://localhost:3000/api/teddies/";
+request.open("GET", url);
+request.send();
 */
 
 
+    
+// UTILISER ONLCICK PLUTOT QUE DATA
 
-
-
-    let cart = document.getElementsByClassName('addCard');
+    let cart = document.getElementsByClassName('see__description');
     for (var i = 0; i < cart.length; i++) {
         cart[i].addEventListener("click", function (e) {
-            let idProduct = this.dataset.test;
+            let idProduct = this.dataset.id;
+
+            var request = new XMLHttpRequest();
+            request.onreadystatechange = function() {
+                if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+                    var response = JSON.parse(this.responseText);
+                    console.log(response);
+
+
+                    let content = document.getElementsByClassName('content__homeBox')[0];
+                    content.innerHTML = ``;
+                    let oldTitle = document.getElementsByClassName('title')[0];
+                    let newTitle = "Le produit " + response['name'];
+                    oldTitle.textContent = newTitle;
+
+
+                }
+            };
+            let url = "http://localhost:3000/api/teddies/" + idProduct;
+            request.open("GET", url);
+            request.send();
+        });
+    }
+
+
+
+    let go_cart = document.getElementById('go_cart');
+        go_cart.addEventListener("click", function (e) {
+            let content = document.getElementsByClassName('content__homeBox')[0];
+            content.innerHTML = ``;
+            let oldTitle = document.getElementsByClassName('title')[0];
+            let newTitle = "Votre panier";
+            oldTitle.textContent = newTitle;
+        });
+    
+
+    /*
 
             var request = new XMLHttpRequest();
             request.onreadystatechange = function() {
@@ -187,13 +215,8 @@ var request = new XMLHttpRequest();
             let url = "localhost/JWDP5/api/teddies/" + idProduct;
             request.open("GET", url);
             request.send();
-        });
-    }
 
-    let go_cart = document.getElementById('go_cart');
-        go_cart.addEventListener("click", function (e) {
-            alert("Alelr vers le panier");
-        });
-    
+
+    */
 </script>
 </html>
