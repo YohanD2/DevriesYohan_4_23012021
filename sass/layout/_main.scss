@@ -1,0 +1,21 @@
+.main {
+    padding: 0px 25px;
+
+    .title{
+        margin: 35px 0px;
+    }
+}
+
+.content__homeBox{
+    display: flex;
+    flex-direction: column;
+    @include small-only{
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    @include computer-only{
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}

@@ -1,0 +1,15 @@
+@mixin small-only{
+    @media screen and (min-width: map-get($breakpoints, xs)){
+        @content;
+    }
+}
+@mixin pad-only{
+    @media screen and (min-width: map-get($breakpoints, sm)){
+        @content;
+    }
+}
+@mixin computer-only{
+    @media screen and (min-width: map-get($breakpoints, md)){
+        @content;
+    }
+}

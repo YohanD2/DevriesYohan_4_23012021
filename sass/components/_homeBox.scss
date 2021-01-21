@@ -1,0 +1,57 @@
+.homeBox{
+    height: 270px;
+    margin-bottom: 40px;
+    .homeBox__visual {
+        height: 220px;
+        position: relative;
+        img{
+            height:220px;
+            width:100%;
+            border-radius: 5px; 
+        }
+        button {
+            position : absolute;
+            bottom: 0;
+            left: 0;
+            height: 0px;
+            width: 100%;
+            background-color: $color-primary;
+            color: $color-text-white;
+            border-radius: 0px 0px 5px 5px;
+            transition: 0.4s;
+            svg{
+                vertical-align: middle;
+            }
+        }
+        &:hover {
+            button {
+                height: 60px;
+            }
+        }
+
+    }
+    @include small-only{
+        width:45%;
+    }
+    @include computer-only{
+        width:30%;
+    }
+
+}
+.homeBox__description{
+    position: relative;
+    p{
+        margin: 5px 0px;
+    }
+    .addCard{
+        cursor: pointer;
+        display: block;
+        height: 20px;
+        width: 20px;
+        position: absolute;
+        right: 0;
+        top : calc(50% - 10px);
+    }
+}
+
+// TEEST 

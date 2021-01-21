@@ -1,0 +1,17 @@
+header {
+    height: 80px;
+    background-color: $color-secondary;
+    padding: 0px 25px;
+    position: relative;
+    span {
+        height:24px;
+        width: 24px;
+        position: absolute;
+        right: 25px;
+        top: calc(50% - 12px);
+        svg {
+            height: 100%;
+            width: 100%;
+        }
+    }
+}
