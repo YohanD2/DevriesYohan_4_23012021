@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Retrouvez vos articles préféré, fabriquer avec soins par nos main, venez jeter un coup d'oeil !">
+    <title>Le magasin main | Orinoco</title>
+    <link rel="stylesheet" href="./.public/css/style.css">
+</head>
+<body>
+    <header>
+        <img src="./images/logo.png" alt="Logo d'Orinoco représentant un caddie">
+        <span id="go_cart">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 16C4.9 16 4.01 16.9 4.01 18C4.01 19.1 4.9 20 6 20C7.1 20 8 19.1 8 18C8 16.9 7.1 16 6 16ZM0 0V2H2L5.6 9.59L4.25 12.04C4.09 12.32 4 12.65 4 13C4 14.1 4.9 15 6 15H18V13H6.42C6.28 13 6.17 12.89 6.17 12.75L6.2 12.63L7.1 11H14.55C15.3 11 15.96 10.59 16.3 9.97L19.88 3.48C19.96 3.34 20 3.17 20 3C20 2.45 19.55 2 19 2H4.21L3.27 0H0ZM16 16C14.9 16 14.01 16.9 14.01 18C14.01 19.1 14.9 20 16 20C17.1 20 18 19.1 18 18C18 16.9 17.1 16 16 16Z" fill="black"/>
+            </svg>
+        </span>
+    </header>
+
+    <section role="main" class="main">
+        <h1 class="title">Récap</h1>
+        <div class="content__homeBox">
+            <ul id="ul">
+
+            </ul>
+            <form onsubmit="validationForm()">
+                <div class="formOrder">
+                  <label for="firstName">Prénom :</label>
+                  <input type="text" name="firstName" id="firstName" required>
+                </div>
+                <div class="formOrder">
+                  <label for="lastName">Nom :</label>
+                  <input type="text" name="lastName" id="lastName" required>
+                </div>
+                <div class="formOrder">
+                    <label for="email">E-mail :</label>
+                    <input type="email" name="email" id="email" required>
+                  </div>
+                  <div class="formOrder">
+                    <label for="address">Adresse :</label>
+                    <input type="text" name="address" id="address" required>
+                  </div>
+                  <div class="formOrder">
+                    <label for="city">Ville :</label>
+                    <input type="text" name="city" id="city" required>
+                  </div>
+                <div class="formOrder">
+                  <input type="submit" value="Valider">
+                </div>
+              </form>
+    
+            
+        </div>
+    </section>
+</body>
+<script>
+
+function escapeHtml(text) {
+  var map = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  };
+  
+  return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+}
+
+    let ul = document.getElementById('ul');
+
+
+    for (var i = 0; i < localStorage.length; i++){
+        let id = JSON.parse(localStorage.getItem(localStorage.key(i))).id;
+        let name = JSON.parse(localStorage.getItem(localStorage.key(i))).name;
+        let price = JSON.parse(localStorage.getItem(localStorage.key(i))).price;
+        let nb = JSON.parse(localStorage.getItem(localStorage.key(i))).nb;
+        let li = document.createElement('li');
+
+        li.innerHTML = 
+            `
+                <p>Nom : ${name} | Prix : ${price} | Quantité : ${nb}</p>
+            `;
+        ul.append(li);
+    }
+
+    
+function checkEmail(email) {
+    let regex = /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim;
+    let found = email.match(regex);
+    if(found != null) {
+        return email;
+    } else {
+        return null;
+    }
+}
+
+// Regex First / last name [a-zA-Z_]*
+/**
+ *
+ * Expects request to contain:
+ * contact: {
+ *   firstName: string,
+ *   lastName: string,
+ *   address: string,
+ *   city: string,
+ *   email: string
+ * }
+ * products: [string] <-- array of product _id
+ *
+ */
+function validationForm(){
+    let inputs = document.getElementsByClassName('formOrder');
+    let error = false;
+    let inputsObject = new Object();
+    let productsArray = new Array();
+    for (var i = 0; i < inputs.length; i++) {
+        let input = inputs[i].getElementsByTagName('input')[0];
+        value = escapeHtml(input.value);
+        if (input.type == "text") {
+            inputsObject[input.name] = value;
+        }
+        if (input.type == "email") {
+            let result = checkEmail(value);
+            if(result == null) {
+                error = true;
+            } else {
+                inputsObject[input.name] = value;
+            }
+        }
+    }
+    if(error == false) {
+        for (var i = 0; i < localStorage.length; i++){
+            let id = JSON.parse(localStorage.getItem(localStorage.key(i))).id;
+            productsArray.push(id);
+        }
+
+        let jsonBody = [inputsObject, productsArray];
+        inputsObject = JSON.stringify(inputsObject)
+        productsArray = JSON.stringify(productsArray)
+        console.log(jsonBody);
+
+        var request = new XMLHttpRequest();
+        request.open("POST", "http://localhost:3000/api/teddies/order");
+        request.setRequestHeader("Content-Type", "application/json");
+        request.send(inputsObject, productsArray);
+        console.log(request);
+
+       // window.localStorage.clear();
+    } else {
+        alert('Une erreure est survenue dans le formulaire');
+    }
+    alert('fin')
+}
+
+</script>
+</html>
