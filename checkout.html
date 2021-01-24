@@ -18,34 +18,36 @@
     </header>
 
     <section role="main" class="main">
-        <h1 class="title">Récap</h1>
+        <button id="back">retour</button>
+        <h1 class="title">Panier</h1>
         <div class="content__homeBox">
             <ul id="ul">
 
             </ul>
+            <p>Prix total : <span id="total__price"></span> €</p>
             <form onsubmit="validationForm()">
                 <div class="formOrder">
                   <label for="firstName">Prénom :</label>
-                  <input type="text" name="firstName" id="firstName" required>
+                  <input class="inputCustom" type="text" name="firstName" id="firstName" required>
                 </div>
                 <div class="formOrder">
                   <label for="lastName">Nom :</label>
-                  <input type="text" name="lastName" id="lastName" required>
+                  <input class="inputCustom" type="text" name="lastName" id="lastName" required>
                 </div>
                 <div class="formOrder">
                     <label for="email">E-mail :</label>
-                    <input type="email" name="email" id="email" required>
+                    <input class="inputCustom" type="email" name="email" id="email" required>
                   </div>
                   <div class="formOrder">
                     <label for="address">Adresse :</label>
-                    <input type="text" name="address" id="address" required>
+                    <input class="inputCustom" type="text" name="address" id="address" required>
                   </div>
                   <div class="formOrder">
                     <label for="city">Ville :</label>
-                    <input type="text" name="city" id="city" required>
+                    <input class="inputCustom" type="text" name="city" id="city" required>
                   </div>
                 <div class="formOrder">
-                  <input type="submit" value="Valider">
+                  <input class="callToAction" type="submit" value="Valider">
                 </div>
               </form>
     
@@ -54,6 +56,18 @@
     </section>
 </body>
 <script>
+// CHEKC IF CART IS EMPTY
+let back = document.getElementById('back');
+back.addEventListener("click", function (e) {
+    window.history.back();
+});
+
+let go_cart = document.getElementById('go_cart');
+go_cart.addEventListener("click", function (e) {
+
+    window.location.href = "http://localhost/JWDP5/checkout";
+    
+});
 
 function escapeHtml(text) {
   var map = {
@@ -69,7 +83,7 @@ function escapeHtml(text) {
 
     let ul = document.getElementById('ul');
 
-
+    let total = 0;
     for (var i = 0; i < localStorage.length; i++){
         let id = JSON.parse(localStorage.getItem(localStorage.key(i))).id;
         let name = JSON.parse(localStorage.getItem(localStorage.key(i))).name;
@@ -79,12 +93,15 @@ function escapeHtml(text) {
 
         li.innerHTML = 
             `
-                <p>Nom : ${name} | Prix : ${price} | Quantité : ${nb}</p>
+                <p>Nom : ${name} x ${nb}   ${price} €</p>
             `;
         ul.append(li);
+        total = total + (price * nb);
     }
+    let totalPrice = document.getElementById('total__price');
+    totalPrice.textContent = total;
 
-    
+
 function checkEmail(email) {
     let regex = /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim;
     let found = email.match(regex);
@@ -146,7 +163,7 @@ function validationForm(){
         request.send(inputsObject, productsArray);
         console.log(request);
 
-       // window.localStorage.clear();
+        window.localStorage.clear();
     } else {
         alert('Une erreure est survenue dans le formulaire');
     }

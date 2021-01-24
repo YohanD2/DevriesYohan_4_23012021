@@ -30,12 +30,6 @@
         }
 
     }
-    @include small-only{
-        width:45%;
-    }
-    @include computer-only{
-        width:30%;
-    }
 
 }
 .homeBox__description{

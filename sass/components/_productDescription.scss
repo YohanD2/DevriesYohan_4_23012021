@@ -1,0 +1,17 @@
+.informations__product{
+    border: 1px solid rgb(240, 240, 240);
+    margin: -30px 15px 0px 15px;
+    border-radius: 20px;
+    background-color:white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    .title{
+        margin-bottom: 20px;
+    }
+    #productDescription, #color__select{
+        margin-bottom: 20px;
+        margin-top: 5px;
+    }
+}

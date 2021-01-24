@@ -17,39 +17,47 @@
         </span>
     </header>
 
-    <section role="main" class="main">
-        <h1 class="title">Mon produit</h1>
+    <section role="main" class="main__product">
         <div class="content__homeBox">
-            <div class="homeBox">
-                <div class="homeBox__visual">
-                    <img id="productImg" src="./images/oak_1.jpg" alt="Description de l'objet">                    
-                </div>
+            <div class="img_product">
+                <button id="back">retour</button>
+
+                <img id="productImg" src="./images/oak_1.jpg" alt="Description de l'objet">                    
             </div>
-            <h2>Description</h2>
-            <p id="productDescription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis voluptatibus officia ipsam corrupti rem velit praesentium quas culpa! Asperiores dolor, nobis nostrum dolorum neque corrupti odit officia harum id mollitia. 
-            </p>
-    
-            <h2>Couleur</h2>
-            <select name="pets" id="pet-select">
-                <option value="">--Please choose an option--</option>
-                <option value="dog">Dog</option>
-                <option value="cat">Cat</option>
-                <option value="hamster">Hamster</option>
-                <option value="parrot">Parrot</option>
-            </select>
-            <button class="callToAction">Ajouter au panier</button>
-    
-    
+            <div class="informations__product">
+                <h1 class="title">Mon nounours</h1>
+                <h2>Description :</h2>
+                <p id="productDescription">
+                    refefre
+                </p>
+        
+                <h2>Couleurs :</h2>
+                <select name="pets" id="color__select">
+                    <option value="">Selectionner une couleur</option>
+                </select>
+                <button class="callToAction">Ajouter au panier</button>
+
+            </div>
+            
             
         </div>
     </section>
 </body>
 <script>
 
+let go_cart = document.getElementById('go_cart');
+go_cart.addEventListener("click", function (e) {
+    window.location.href = "http://localhost/JWDP5/checkout";
+});
+
+let back = document.getElementById('back');
+back.addEventListener("click", function (e) {
+    window.history.back();
+});
+
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const productId = urlParams.get('id')
-console.log(productId);
 
 
 var request = new XMLHttpRequest();
@@ -62,6 +70,24 @@ request.onreadystatechange = function() {
 
         let image = document.getElementById('productImg');
         image.src = response.imageUrl;
+
+        let title = document.getElementsByClassName('title')[0];
+        title.textContent = response.name
+;
+        let colorSelect = document.getElementById('color__select');
+
+        response.colors.forEach(function(value){
+            let opt = document.createElement('option');
+            opt.value = value;
+            opt.innerHTML = value;
+            colorSelect.appendChild(opt);
+        
+        });
+
+        let btn = document.getElementsByClassName('callToAction')[0];
+        btn.setAttribute("onclick",`addCart('${response._id}', '${response.name}', '${response.price}');`);
+
+        
     }
 }
 
@@ -70,6 +96,35 @@ let url = "http://localhost:3000/api/teddies/" + productId;
 console.log(url);
 request.open("GET", url);
 request.send();
+
+
+function addCart(idProduct, nameProduct, priceProduct) {
+   // window.localStorage.clear();
+    
+
+    
+    if(window.localStorage.getItem(idProduct)){
+        let nbProduct = parseInt(JSON.parse(window.localStorage.getItem(idProduct)).nb) + 1;
+        const person = {
+            id: idProduct,
+            name: nameProduct,
+            price: priceProduct,
+            nb: nbProduct,
+        }
+        let per = JSON.stringify(person);
+        localStorage.setItem(idProduct, per);
+    } else {
+        const person = {
+            id: idProduct,
+            name: nameProduct,
+            price: priceProduct,
+            nb: '1',
+        }
+        let per =  JSON.stringify(person);
+        localStorage.setItem(idProduct, per);
+    }
+}
+
 
 </script>
 </html>

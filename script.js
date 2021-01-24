@@ -102,3 +102,6 @@ let go_cart = document.getElementById('go_cart');
 go_cart.addEventListener("click", function (e) {
     window.location.href = "http://localhost/JWDP5/checkout";
 });
+
+
+
