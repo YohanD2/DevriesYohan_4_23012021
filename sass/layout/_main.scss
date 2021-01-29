@@ -14,15 +14,28 @@
         justify-content: space-between;
         flex-wrap: wrap;
     }
-    @include computer-only{
-        flex-direction: row;
-        justify-content: space-between;
-    }
+
 }
 
 .main__payment{
-    display:flex;
+    margin-top : 50px;
+    display: flex;
     flex-direction: column;
-    align-items: center;
-    
+    h2{
+        margin-top: 30px;
+        margin-bottom: 5px;
+    }
+    a{
+        color: $color-primary;
+    }
+    a:hover {
+        text-decoration: underline;
+        color: $color-primary;
+    }
+    @include small-only{
+        align-items: center;
+        >*{
+            width:50%;
+        }
+    }
 }

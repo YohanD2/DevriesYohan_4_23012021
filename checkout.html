@@ -20,11 +20,14 @@
     <section role="main" class="main">
         <button id="back">retour</button>
         <h1 class="title">Panier</h1>
-        <div class="content__homeBox">
+        <div class="main__payment">
+            <h2>Produits : </h2>
             <ul id="ul">
 
             </ul>
-            <p>Prix total : <span id="total__price"></span> €</p>
+            <h2>Prix total :</h2>
+            <p><span id="total__price"></span> €</p>
+            <h2>Informations :</h2>
             <form onsubmit="validationForm()">
                 <div class="formOrder">
                   <label for="firstName">Prénom :</label>
@@ -93,7 +96,7 @@ function escapeHtml(text) {
 
         li.innerHTML = 
             `
-                <p>Nom : ${name} x ${nb}   ${price} €</p>
+                <p>Nom : ${name} x ${nb}  =  ${price} €</p>
             `;
         ul.append(li);
         total = total + (price * nb);
@@ -113,64 +116,60 @@ function checkEmail(email) {
 }
 
 // Regex First / last name [a-zA-Z_]*
-/**
- *
- * Expects request to contain:
- * contact: {
- *   firstName: string,
- *   lastName: string,
- *   address: string,
- *   city: string,
- *   email: string
- * }
- * products: [string] <-- array of product _id
- *
- */
+
 function validationForm(){
     let inputs = document.getElementsByClassName('formOrder');
     let error = false;
-    let inputsObject = new Object();
-    let productsArray = new Array();
+    let contact = new Object();
+    let products = new Array();
+
+
     for (var i = 0; i < inputs.length; i++) {
         let input = inputs[i].getElementsByTagName('input')[0];
         value = escapeHtml(input.value);
         if (input.type == "text") {
-            inputsObject[input.name] = value;
+            contact[input.name] = value;
         }
         if (input.type == "email") {
             let result = checkEmail(value);
             if(result == null) {
                 error = true;
             } else {
-                inputsObject[input.name] = value;
+                contact[input.name] = value;
             }
         }
     }
+
     if(error == false) {
         for (var i = 0; i < localStorage.length; i++){
             let id = JSON.parse(localStorage.getItem(localStorage.key(i))).id;
-            productsArray.push(id);
+            products.push(id);
         }
 
-        let jsonBody = [inputsObject, productsArray];
-        inputsObject = JSON.stringify(inputsObject)
-        productsArray = JSON.stringify(productsArray)
+        var jsonBody = {contact,products};
+        jsonBody = JSON.stringify(jsonBody);
         console.log(jsonBody);
 
         var request = new XMLHttpRequest();
-        request.open("POST", "http://localhost:3000/api/teddies/order");
+        request.onreadystatechange = function() {
+            if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+                var response = JSON.parse(this.responseText);
+                window.location.href = "http://localhost/JWDP5/payment_confirmation";
+                window.localStorage.clear();
+            } else {
+                console.log(this.status);
+            }
+        };
+
+        let url = "http://localhost:3000/api/teddies/order";
+        request.open("POST", url);
         request.setRequestHeader("Content-Type", "application/json");
-        request.send(inputsObject, productsArray);
-        console.log(request);
-
-        window.localStorage.clear();
-
-        window.location.href = "http://localhost/JWDP5/payment_confirmation";
+        request.send(jsonBody);
 
     } else {
         alert('Une erreure est survenue dans le formulaire');
     }
-    alert('fin')
+    alert('fin');
 }
 
 </script>

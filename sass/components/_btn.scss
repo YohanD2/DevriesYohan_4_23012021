@@ -1,3 +1,22 @@
+.see__description {
+    position : absolute;
+    bottom: 0;
+    left: 0;
+    height: 0px;
+    width: 100%;
+    background-color: $color-primary;
+    color: $color-text-white;
+    border-radius: 0px 0px 5px 5px;
+    overflow: hidden;
+    transition: 0.4s;
+    p{
+        color: $color-text-white;
+    }
+    svg{
+        vertical-align: middle;
+    }
+}
+
 .callToAction{
     height: 60px;
     background-color: $color-primary;
@@ -5,11 +24,38 @@
     border-radius: 5px;
     border: 0px;
     font-size: 1em;
+    &:hover, &:focus{
+        text-decoration: underline;
+        box-shadow: 0px 0px 12px 4px rgba(73, 44, 131, 0.167);
+    }
 }
 
 #back {
     padding:4px 16px;
-        background-color:white;
-        border-radius: 5px;
-        box-shadow: 0px 0px 24px 8px rgba(164, 162, 162, 0.589);
+    background-color:white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 24px 8px rgba(164, 162, 162, 0.589);
+    &:hover, &:focus{
+        text-decoration: underline;
+        box-shadow: 0px 0px 24px 8px rgba(164, 162, 162, 0.747);
+
+    }
 }
+#go_cart{
+    border: 1px solid transparent;
+    border-radius: 2px;
+    padding: 2px;
+    svg{
+        width:20px;
+        height:20px;
+    }
+
+}
+#go_cart:hover, #go_cart:focus{
+    fill: $color-primary;
+    color: $color-primary;
+    border: 1px solid $color-primary;
+    path{
+        fill: blue;
+    }
+}       
