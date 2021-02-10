@@ -17,12 +17,20 @@
         </span>
     </header>
 
-    <section role="main" class="main__payment">
+    <section role="main" class="main main__payment">
         <svg width="139" height="139" viewBox="0 0 139 139" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M69.5 0C31.136 0 0 31.136 0 69.5C0 107.864 31.136 139 69.5 139C107.864 139 139 107.864 139 69.5C139 31.136 107.864 0 69.5 0ZM55.6 104.25L20.85 69.5L30.6495 59.7005L55.6 84.5815L108.35 31.831L118.15 41.7L55.6 104.25Z" fill="#E58A0B"/>
         </svg>
-        <p>Votre commande n° <span>XXX</span> est confirmée</p>
+        <p>Votre commande n° </br><span id="orderId"></span></br> est confirmée</p>
         <a href="http://localhost/JWDP5">Revenir à l'accueil</a>
     </section>
 </body>
+<script>
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const orderId = urlParams.get('id_order')
+    
+    let spanOrderId = document.getElementById('orderId');
+    spanOrderId.innerHTML = orderId;
+</script>
 </html>

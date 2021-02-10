@@ -10,21 +10,17 @@
 <body>
     <header>
         <img src="./images/logo.png" alt="Logo d'Orinoco représentant un caddie">
-        <span id="go_cart">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M6 16C4.9 16 4.01 16.9 4.01 18C4.01 19.1 4.9 20 6 20C7.1 20 8 19.1 8 18C8 16.9 7.1 16 6 16ZM0 0V2H2L5.6 9.59L4.25 12.04C4.09 12.32 4 12.65 4 13C4 14.1 4.9 15 6 15H18V13H6.42C6.28 13 6.17 12.89 6.17 12.75L6.2 12.63L7.1 11H14.55C15.3 11 15.96 10.59 16.3 9.97L19.88 3.48C19.96 3.34 20 3.17 20 3C20 2.45 19.55 2 19 2H4.21L3.27 0H0ZM16 16C14.9 16 14.01 16.9 14.01 18C14.01 19.1 14.9 20 16 20C17.1 20 18 19.1 18 18C18 16.9 17.1 16 16 16Z" fill="black"/>
-            </svg>
-        </span>
     </header>
 
-    <section role="main" class="main">
+    <section role="main" class="main main__checkout">
         <button id="back">retour</button>
         <h1 class="title">Panier</h1>
-        <div class="main__payment">
+        <div>
             <h2>Produits : </h2>
             <ul id="ul">
 
             </ul>
+            <button id="deleteCart">Vider le panier</button>
             <h2>Prix total :</h2>
             <p><span id="total__price"></span> €</p>
             <h2>Informations :</h2>
@@ -62,16 +58,25 @@
 // CHEKC IF CART IS EMPTY
 let back = document.getElementById('back');
 back.addEventListener("click", function (e) {
-    window.history.back();
+    window.location.href = "http://localhost/JWDP5/";
 });
 
-let go_cart = document.getElementById('go_cart');
-go_cart.addEventListener("click", function (e) {
+if ( localStorage.length == 0 ) {
+    let deleteCart = document.getElementById('deleteCart');
+    deleteCart.style.display = "none";
 
+    let ul = document.getElementById('ul');
+
+    let li = document.createElement('li');
+    li.innerHTML = `<p>Vous n'avez pas de produit dans le panier</p>`;
+    ul.appendChild(li);
+}
+
+let delete_cart = document.getElementById('deleteCart');
+delete_cart.addEventListener('click', function() {
+    window.localStorage.clear();
     window.location.href = "http://localhost/JWDP5/checkout";
-    
-});
-
+})
 function escapeHtml(text) {
   var map = {
     '&': '&amp;',
@@ -148,16 +153,16 @@ function validationForm(){
 
         var jsonBody = {contact,products};
         jsonBody = JSON.stringify(jsonBody);
-        console.log(jsonBody);
 
         var request = new XMLHttpRequest();
         request.onreadystatechange = function() {
-            if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+            if (this.readyState == XMLHttpRequest.DONE && this.status == 201) {
                 var response = JSON.parse(this.responseText);
-                window.location.href = "http://localhost/JWDP5/payment_confirmation";
                 window.localStorage.clear();
+                window.location.href = "http://localhost/JWDP5/payment_confirmation?id_order=" + response.orderId;
+                
             } else {
-                console.log(this.status);
+                alert('Une erreure est survenue')
             }
         };
 
@@ -169,7 +174,6 @@ function validationForm(){
     } else {
         alert('Une erreure est survenue dans le formulaire');
     }
-    alert('fin');
 }
 
 </script>

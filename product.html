@@ -17,12 +17,12 @@
         </button>
     </header>
 
-    <section role="main" class="main__product">
+    <section role="main" class="main main__product">
         <div class="content__homeBox">
             <div class="img_product">
                 <button id="back">retour</button>
 
-                <img id="productImg" src="./images/oak_1.jpg" alt="Description de l'objet">                    
+                <img id="productImg" alt="Description de l'objet">                    
             </div>
             <div class="informations__product">
                 <h1 class="title">Mon nounours</h1>
@@ -52,7 +52,7 @@ go_cart.addEventListener("click", function (e) {
 
 let back = document.getElementById('back');
 back.addEventListener("click", function (e) {
-    window.history.back();
+    window.location.href = "http://localhost/JWDP5/";
 });
 
 const queryString = window.location.search;
@@ -72,8 +72,8 @@ request.onreadystatechange = function() {
         image.src = response.imageUrl;
 
         let title = document.getElementsByClassName('title')[0];
-        title.textContent = response.name
-;
+        title.textContent = response.name;
+
         let colorSelect = document.getElementById('color__select');
 
         response.colors.forEach(function(value){
