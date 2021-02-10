@@ -7,17 +7,23 @@
 
 
 // AU CHARGEMENT DE LA PAGE :
+var countCard = document.getElementById('countCard');
+    let nbProduct = 0;
 
+    for (var i = 0; i < localStorage.length; i++){
+        let nb = JSON.parse(localStorage.getItem(localStorage.key(i))).nb;
+        nbProduct = nbProduct + parseInt(nb);
+    }
+    countCard.textContent = nbProduct;
 
 var request = new XMLHttpRequest();
 request.onreadystatechange = function() {
     if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
         var response = JSON.parse(this.responseText);
-        var parent = document.getElementsByClassName('content__homeBox')[0];
+        var parent = document.getElementsByClassName('content__homeBox--main')[0];
 
         response.forEach(function(value){
             let t = document.createElement('div');
-            console.log(value._id);
             t.innerHTML = 
             `
             <div class="homeBox">
@@ -66,11 +72,9 @@ function seeDescription(idProduct) {
 }
 
 function addCart(idProduct, nameProduct, priceProduct) {
-   // window.localStorage.clear();
-    console.log(idProduct);
-    console.log(nameProduct);
-     console.log(priceProduct);
 
+     nbProduct = nbProduct + 1;
+     countCard.textContent = nbProduct;
     
     if(window.localStorage.getItem(idProduct)){
         let nbProduct = parseInt(JSON.parse(window.localStorage.getItem(idProduct)).nb) + 1;

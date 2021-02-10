@@ -1,20 +1,29 @@
 .main {
+    display:flex;
     padding: 0px 20px;
-
     .title{
         margin: 35px 0px;
+    }
+    @include small-only{
+        justify-content: center;
+        flex-direction: initial;
     }
 }
 
 .content__homeBox{
-    display: flex;
-    flex-direction: column;
+    width: 100%;
     @include small-only{
+        width:70%;
         flex-direction: row;
         justify-content: space-between;
         flex-wrap: wrap;
     }
-
+    @include pad-only{
+        width:40%;
+    }
+    @include computer-only {
+        width:25%;
+    }
 }
 
 .main__product{
@@ -42,6 +51,23 @@
     }
 }
 
+.main__home {
+    @include pad-only{
+        .content__homeBox{
+            width:100%;
+        }
+    }
+}
+.content__homeBox--main{
+    display: flex;
+    flex-direction: column;
+    @include pad-only{
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+}
 .main__payment{
     margin-top : 30%;
     display: flex;
@@ -69,5 +95,9 @@
         >*{
             width:50%;
         }
+    }
+    @include computer-only {
+        margin-top : 10%;
+
     }
 }

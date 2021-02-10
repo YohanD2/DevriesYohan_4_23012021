@@ -13,48 +13,53 @@
     </header>
 
     <section role="main" class="main main__checkout">
-        <button id="back">retour</button>
-        <h1 class="title">Panier</h1>
-        <div>
-            <h2>Produits : </h2>
-            <ul id="ul">
+        <div class="content__homeBox">
 
-            </ul>
-            <button id="deleteCart">Vider le panier</button>
-            <h2>Prix total :</h2>
-            <p><span id="total__price"></span> €</p>
-            <h2>Informations :</h2>
-            <form onsubmit="validationForm()">
-                <div class="formOrder">
-                  <label for="firstName">Prénom :</label>
-                  <input class="inputCustom" type="text" name="firstName" id="firstName" required>
-                </div>
-                <div class="formOrder">
-                  <label for="lastName">Nom :</label>
-                  <input class="inputCustom" type="text" name="lastName" id="lastName" required>
-                </div>
-                <div class="formOrder">
-                    <label for="email">E-mail :</label>
-                    <input class="inputCustom" type="email" name="email" id="email" required>
-                  </div>
-                  <div class="formOrder">
-                    <label for="address">Adresse :</label>
-                    <input class="inputCustom" type="text" name="address" id="address" required>
-                  </div>
-                  <div class="formOrder">
-                    <label for="city">Ville :</label>
-                    <input class="inputCustom" type="text" name="city" id="city" required>
-                  </div>
-                <div class="formOrder">
-                  <input class="callToAction" type="submit" value="Valider">
-                </div>
-              </form>
-    
-            
+            <button id="back">retour</button>
+            <h1 class="title">Panier</h1>
+            <div>
+                <h2>Produits : </h2>
+                <ul id="ul">
+
+                </ul>
+                <button id="deleteCart">Vider le panier</button>
+                <h2>Prix total :</h2>
+                <p><span id="total__price"></span> €</p>
+                <h2>Informations :</h2>
+                <form onsubmit="validationForm()">
+                    <div class="formOrder">
+                    <label for="firstName">Prénom :</label>
+                    <input class="inputCustom" type="text" name="firstName" id="firstName" required>
+                    </div>
+                    <div class="formOrder">
+                    <label for="lastName">Nom :</label>
+                    <input class="inputCustom" type="text" name="lastName" id="lastName" required>
+                    </div>
+                    <div class="formOrder">
+                        <label for="email">E-mail :</label>
+                        <input class="inputCustom" type="email" name="email" id="email" required>
+                    </div>
+                    <div class="formOrder">
+                        <label for="address">Adresse :</label>
+                        <input class="inputCustom" type="text" name="address" id="address" required>
+                    </div>
+                    <div class="formOrder">
+                        <label for="city">Ville :</label>
+                        <input class="inputCustom" type="text" name="city" id="city" required>
+                    </div>
+                    <div class="formOrder">
+                    <input class="callToAction" type="submit" value="Valider">
+                    </div>
+                </form>
+        
+                
+            </div>
         </div>
     </section>
 </body>
 <script>
+
+
 // CHEKC IF CART IS EMPTY
 let back = document.getElementById('back');
 back.addEventListener("click", function (e) {
@@ -109,7 +114,6 @@ function escapeHtml(text) {
     let totalPrice = document.getElementById('total__price');
     totalPrice.textContent = total;
 
-
 function checkEmail(email) {
     let regex = /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim;
     let found = email.match(regex);
@@ -157,12 +161,13 @@ function validationForm(){
         var request = new XMLHttpRequest();
         request.onreadystatechange = function() {
             if (this.readyState == XMLHttpRequest.DONE && this.status == 201) {
-                var response = JSON.parse(this.responseText);
                 window.localStorage.clear();
+
+                var response = JSON.parse(this.responseText);
                 window.location.href = "http://localhost/JWDP5/payment_confirmation?id_order=" + response.orderId;
-                
+
             } else {
-                alert('Une erreure est survenue')
+                //console.log(this.status);
             }
         };
 
@@ -174,6 +179,7 @@ function validationForm(){
     } else {
         alert('Une erreure est survenue dans le formulaire');
     }
+    alert('fin');
 }
 
 </script>
