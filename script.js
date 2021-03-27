@@ -1,16 +1,12 @@
 
-/*
-
-*/
-
-
 
 
 // AU CHARGEMENT DE LA PAGE :
 var countCard = document.getElementById('countCard');
     let nbProduct = 0;
-
+    console.log(localStorage);
     for (var i = 0; i < localStorage.length; i++){
+         
         let nb = JSON.parse(localStorage.getItem(localStorage.key(i))).nb;
         nbProduct = nbProduct + parseInt(nb);
     }
@@ -57,11 +53,13 @@ request.onreadystatechange = function() {
 
             parent.append(t);
         }); 
+    } else {
+        alert('une erreur est survenue code : ' + this.status );
+        console.log(this.status);
     }
 };
 
-
-let url = "http://localhost:3000/api/teddies/";
+let url = "http://localhost:4000/api/teddies/";
 request.open("GET", url);
 request.send();
 

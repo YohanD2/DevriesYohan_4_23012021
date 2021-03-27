@@ -27,6 +27,7 @@
             </div>
             <div class="informations__product">
                 <h1 class="title">Mon nounours</h1>
+                <p id="price"></p>
                 <h2>Description :</h2>
                 <p id="productDescription">
                     refefre
@@ -37,10 +38,7 @@
                     <option value="">Selectionner une couleur</option>
                 </select>
                 <button class="callToAction">Ajouter au panier</button>
-
-            </div>
-            
-            
+            </div> 
         </div>
     </section>
 </body>
@@ -67,13 +65,15 @@ back.addEventListener("click", function (e) {
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-const productId = urlParams.get('id')
-
+const productId = urlParams.get('id');
 
 var request = new XMLHttpRequest();
 request.onreadystatechange = function() {
     if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
         var response = JSON.parse(this.responseText);
+
+        let price = document.getElementById('price');
+        price.textContent = response.price;
 
         let description = document.getElementById('productDescription');
         description.textContent = response.description;
@@ -96,12 +96,8 @@ request.onreadystatechange = function() {
 
         let btn = document.getElementsByClassName('callToAction')[0];
         btn.setAttribute("onclick",`addCart('${response._id}', '${response.name}', '${response.price}');`);
-
-        
     }
 }
-
-
 let url = "http://localhost:3000/api/teddies/" + productId;
 console.log(url);
 request.open("GET", url);

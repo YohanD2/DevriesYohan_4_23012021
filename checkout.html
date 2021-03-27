@@ -48,11 +48,9 @@
                         <input class="inputCustom" type="text" name="city" id="city" required>
                     </div>
                     <div class="formOrder">
-                    <input class="callToAction" type="submit" value="Valider">
+                        <input class="callToAction" type="submit" value="Valider">
                     </div>
                 </form>
-        
-                
             </div>
         </div>
     </section>
@@ -157,29 +155,33 @@ function validationForm(){
 
         var jsonBody = {contact,products};
         jsonBody = JSON.stringify(jsonBody);
+        
+        // return :
+        // {"contact":{"firstName":"hjnbk","lastName":"bikl","email":"bjvbhj@vhj.com","address":"bujo","city":"bvuo"},"products":["5beaa8bf1c9d440000a57d94"]}
+        
 
         var request = new XMLHttpRequest();
         request.onreadystatechange = function() {
-            if (this.readyState == XMLHttpRequest.DONE && this.status == 201) {
+            if (this.readyState == XMLHttpRequest.DONE && this.status == 0) {
                 window.localStorage.clear();
-
+                console.log(this);
                 var response = JSON.parse(this.responseText);
                 window.location.href = "http://localhost/JWDP5/payment_confirmation?id_order=" + response.orderId;
 
             } else {
-                //console.log(this.status);
+                console.log(this.status);
+                alert("ehy");
             }
         };
 
-        let url = "http://localhost:3000/api/teddies/order";
+        let url = "http://localhost:4000/api/teddies/order";
         request.open("POST", url);
         request.setRequestHeader("Content-Type", "application/json");
         request.send(jsonBody);
-
+        
     } else {
         alert('Une erreure est survenue dans le formulaire');
     }
-    alert('fin');
 }
 
 </script>
