@@ -3,14 +3,13 @@
 
 // AU CHARGEMENT DE LA PAGE :
 var countCard = document.getElementById('countCard');
-    let nbProduct = 0;
-    console.log(localStorage);
-    for (var i = 0; i < localStorage.length; i++){
-         
-        let nb = JSON.parse(localStorage.getItem(localStorage.key(i))).nb;
-        nbProduct = nbProduct + parseInt(nb);
-    }
-    countCard.textContent = nbProduct;
+let nbProduct = 0;
+for (var i = 0; i < localStorage.length; i++){
+        
+    let nb = JSON.parse(localStorage.getItem(localStorage.key(i))).nb;
+    nbProduct = nbProduct + parseInt(nb);
+}
+countCard.textContent = nbProduct;
 
 var request = new XMLHttpRequest();
 request.onreadystatechange = function() {
@@ -53,9 +52,6 @@ request.onreadystatechange = function() {
 
             parent.append(t);
         }); 
-    } else {
-        alert('une erreur est survenue code : ' + this.status );
-        console.log(this.status);
     }
 };
 

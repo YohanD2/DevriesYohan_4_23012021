@@ -26,7 +26,7 @@
                 <h2>Prix total :</h2>
                 <p><span id="total__price"></span> €</p>
                 <h2>Informations :</h2>
-                <form onsubmit="validationForm()">
+                <form onsubmit="validationForm(event)">
                     <div class="formOrder">
                     <label for="firstName">Prénom :</label>
                     <input class="inputCustom" type="text" name="firstName" id="firstName" required>
@@ -124,7 +124,10 @@ function checkEmail(email) {
 
 // Regex First / last name [a-zA-Z_]*
 
-function validationForm(){
+function validationForm(e){
+    e.preventDefault();
+
+
     let inputs = document.getElementsByClassName('formOrder');
     let error = false;
     let contact = new Object();
@@ -168,11 +171,6 @@ function validationForm(){
                 var response = JSON.parse(this.responseText);
                 window.location.href = "http://localhost/JWDP5/payment_confirmation?id_order=" + response.orderId;
 
-            } else {
-                console.log(this);
-                console.log(this.readyState);
-                console.log(this.status);
-                alert("ehy");
             }
         };
 
@@ -182,7 +180,7 @@ function validationForm(){
         request.send(jsonBody);
         
     } else {
-        alert('Une erreure est survenue dans le formulaire');
+        alert('Une erreur est survenue dans le formulaire');
     }
 }
 

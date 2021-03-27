@@ -1,4 +1,5 @@
 const uuid = require('uuid/v1');
+const { exists } = require('../models/Teddy');
 const Teddy = require('../models/Teddy');
 
 exports.getAllTeddies = (req, res, next) => {
@@ -47,6 +48,8 @@ exports.getOneTeddy = (req, res, next) => {
  *
  */
 exports.orderTeddies = (req, res, next) => {
+  console.log(req.body.contact);
+  console.log(req.body);
   if (!req.body.contact ||
     !req.body.contact.firstName ||
     !req.body.contact.lastName ||
