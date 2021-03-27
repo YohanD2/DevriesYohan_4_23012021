@@ -59,7 +59,7 @@ request.onreadystatechange = function() {
     }
 };
 
-let url = "http://localhost:4000/api/teddies/";
+let url = "http://localhost:3000/api/teddies/";
 request.open("GET", url);
 request.send();
 
