@@ -1,5 +1,6 @@
 .homeBox{
     height: 270px;
+    width: 300px;
     margin-bottom: 40px;
     .homeBox__visual {
         height: 220px;
@@ -9,11 +10,20 @@
             width:100%;
             border-radius: 5px; 
         }
-        &:hover {
-            .see__description {
-                height: 60px;
+        .see__description {
+            height: 60px;
+        }
+        @include computer-only {
+            .see__description{
+                height: 0px;
+            }
+            &:hover {
+                .see__description {
+                    height: 60px;
+                }
             }
         }
+        
 
     }
 
@@ -33,5 +43,3 @@
         top : calc(50% - 10px);
     }
 }
-
-// TEEST 

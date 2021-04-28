@@ -14,7 +14,7 @@
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M6 16C4.9 16 4.01 16.9 4.01 18C4.01 19.1 4.9 20 6 20C7.1 20 8 19.1 8 18C8 16.9 7.1 16 6 16ZM0 0V2H2L5.6 9.59L4.25 12.04C4.09 12.32 4 12.65 4 13C4 14.1 4.9 15 6 15H18V13H6.42C6.28 13 6.17 12.89 6.17 12.75L6.2 12.63L7.1 11H14.55C15.3 11 15.96 10.59 16.3 9.97L19.88 3.48C19.96 3.34 20 3.17 20 3C20 2.45 19.55 2 19 2H4.21L3.27 0H0ZM16 16C14.9 16 14.01 16.9 14.01 18C14.01 19.1 14.9 20 16 20C17.1 20 18 19.1 18 18C18 16.9 17.1 16 16 16Z" fill="black"/>
             </svg>
-            <div id="countCard"></div>
+            <span id="countCard"></span>
         </button>
     </header>
 
@@ -23,115 +23,22 @@
             <div class="img_product">
                 <button id="back">retour</button>
 
-                <img id="productImg" alt="Description de l'objet">                    
+                <img id="productImg" alt="">                    
             </div>
             <div class="informations__product">
-                <h1 class="title">Mon nounours</h1>
-                <p id="price"></p>
+                <h1 class="title"></h1>
+                <p class="price"><span id="price"></span> €</p>
                 <h2>Description :</h2>
                 <p id="productDescription">
-                    refefre
                 </p>
         
                 <h2>Couleurs :</h2>
                 <select name="pets" id="color__select">
-                    <option value="">Selectionner une couleur</option>
                 </select>
                 <button class="callToAction">Ajouter au panier</button>
             </div> 
         </div>
     </section>
+    <script src="product.js"></script> 
 </body>
-<script>
-
-    var countCard = document.getElementById('countCard');
-    let nbProduct = 0;
-
-    for (var i = 0; i < localStorage.length; i++){
-        let nb = JSON.parse(localStorage.getItem(localStorage.key(i))).nb;
-        nbProduct = nbProduct + parseInt(nb);
-    }
-    countCard.textContent = nbProduct;
-
-let go_cart = document.getElementById('go_cart');
-go_cart.addEventListener("click", function (e) {
-    window.location.href = "http://localhost/JWDP5/checkout";
-});
-
-let back = document.getElementById('back');
-back.addEventListener("click", function (e) {
-    window.location.href = "http://localhost/JWDP5/";
-});
-
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-const productId = urlParams.get('id');
-
-var request = new XMLHttpRequest();
-request.onreadystatechange = function() {
-    if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-        var response = JSON.parse(this.responseText);
-
-        let price = document.getElementById('price');
-        price.textContent = response.price;
-
-        let description = document.getElementById('productDescription');
-        description.textContent = response.description;
-
-        let image = document.getElementById('productImg');
-        image.src = response.imageUrl;
-
-        let title = document.getElementsByClassName('title')[0];
-        title.textContent = response.name;
-
-        let colorSelect = document.getElementById('color__select');
-
-        response.colors.forEach(function(value){
-            let opt = document.createElement('option');
-            opt.value = value;
-            opt.innerHTML = value;
-            colorSelect.appendChild(opt);
-        
-        });
-
-        let btn = document.getElementsByClassName('callToAction')[0];
-        btn.setAttribute("onclick",`addCart('${response._id}', '${response.name}', '${response.price}');`);
-    }
-}
-let url = "http://localhost:3000/api/teddies/" + productId;
-console.log(url);
-request.open("GET", url);
-request.send();
-
-
-function addCart(idProduct, nameProduct, priceProduct) {
-   // window.localStorage.clear();
-
-    nbProduct = nbProduct + 1;
-    countCard.textContent = nbProduct;
-    
-    if(window.localStorage.getItem(idProduct)){
-        let nbProduct = parseInt(JSON.parse(window.localStorage.getItem(idProduct)).nb) + 1;
-        const person = {
-            id: idProduct,
-            name: nameProduct,
-            price: priceProduct,
-            nb: nbProduct,
-        }
-        let per = JSON.stringify(person);
-        localStorage.setItem(idProduct, per);
-    } else {
-        const person = {
-            id: idProduct,
-            name: nameProduct,
-            price: priceProduct,
-            nb: '1',
-        }
-        let per =  JSON.stringify(person);
-        localStorage.setItem(idProduct, per);
-    }
-}
-
-
-</script>
 </html>

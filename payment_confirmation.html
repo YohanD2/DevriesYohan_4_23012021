@@ -19,14 +19,6 @@
         <p>Votre commande</br>n° <span id="orderId"></span></br>est confirmée</p>
         <a href="http://localhost/JWDP5">Revenir à l'accueil</a>
     </section>
+    <script src="confirm.js"></script> 
 </body>
-<script>
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const orderId = urlParams.get('id_order')
-    
-    let spanOrderId = document.getElementById('orderId');
-    spanOrderId.textContent = orderId;
-
-</script>
 </html>

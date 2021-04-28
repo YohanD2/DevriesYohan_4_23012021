@@ -3,6 +3,7 @@
     padding: 0px 20px;
     .title{
         margin: 35px 0px;
+        text-align: center;
     }
     @include small-only{
         justify-content: center;
@@ -22,14 +23,16 @@
         width:40%;
     }
     @include computer-only {
-        width:25%;
+        width:400px;
     }
 }
 
 .main__product{
+    margin-top: 20px;
     #back{
         position: absolute;
         top: 25px;
+        left: 20px;
     }
 }
 
@@ -68,6 +71,14 @@
         justify-content: space-around;
     }
 }
+
+.content__homeBox--center {
+    display: flex;
+    justify-content: center;
+    @include pad-only {
+        margin:0px 20px;
+    }
+}
 .main__payment{
     margin-top : 30%;
     display: flex;
@@ -100,4 +111,9 @@
         margin-top : 10%;
 
     }
+}
+
+.price {
+    margin-bottom: 10px;
+    font-weight: bold;
 }

@@ -22,9 +22,10 @@
                 <ul id="ul">
 
                 </ul>
-                <button id="deleteCart">Vider le panier</button>
                 <h2>Prix total :</h2>
                 <p><span id="total__price"></span> €</p>
+                <button id="deleteCart">Vider le panier</button>
+
                 <h2>Informations :</h2>
                 <form onsubmit="validationForm(event)">
                     <div class="formOrder">
@@ -54,135 +55,6 @@
             </div>
         </div>
     </section>
+    <script src="checkout.js"></script> 
 </body>
-<script>
-
-
-// CHEKC IF CART IS EMPTY
-let back = document.getElementById('back');
-back.addEventListener("click", function (e) {
-    window.location.href = "http://localhost/JWDP5/";
-});
-
-if ( localStorage.length == 0 ) {
-    let deleteCart = document.getElementById('deleteCart');
-    deleteCart.style.display = "none";
-
-    let ul = document.getElementById('ul');
-
-    let li = document.createElement('li');
-    li.innerHTML = `<p>Vous n'avez pas de produit dans le panier</p>`;
-    ul.appendChild(li);
-}
-
-let delete_cart = document.getElementById('deleteCart');
-delete_cart.addEventListener('click', function() {
-    window.localStorage.clear();
-    window.location.href = "http://localhost/JWDP5/checkout";
-})
-function escapeHtml(text) {
-  var map = {
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    "'": '&#039;'
-  };
-  
-  return text.replace(/[&<>"']/g, function(m) { return map[m]; });
-}
-
-    let ul = document.getElementById('ul');
-
-    let total = 0;
-    for (var i = 0; i < localStorage.length; i++){
-        let id = JSON.parse(localStorage.getItem(localStorage.key(i))).id;
-        let name = JSON.parse(localStorage.getItem(localStorage.key(i))).name;
-        let price = JSON.parse(localStorage.getItem(localStorage.key(i))).price;
-        let nb = JSON.parse(localStorage.getItem(localStorage.key(i))).nb;
-        let li = document.createElement('li');
-
-        li.innerHTML = 
-            `
-                <p>Nom : ${name} x ${nb}  =  ${price} €</p>
-            `;
-        ul.append(li);
-        total = total + (price * nb);
-    }
-    let totalPrice = document.getElementById('total__price');
-    totalPrice.textContent = total;
-
-function checkEmail(email) {
-    let regex = /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim;
-    let found = email.match(regex);
-    if(found != null) {
-        return email;
-    } else {
-        return null;
-    }
-}
-
-// Regex First / last name [a-zA-Z_]*
-
-function validationForm(e){
-    e.preventDefault();
-
-
-    let inputs = document.getElementsByClassName('formOrder');
-    let error = false;
-    let contact = new Object();
-    let products = new Array();
-
-
-    for (var i = 0; i < inputs.length; i++) {
-        let input = inputs[i].getElementsByTagName('input')[0];
-        value = escapeHtml(input.value);
-        if (input.type == "text") {
-            contact[input.name] = value;
-        }
-        if (input.type == "email") {
-            let result = checkEmail(value);
-            if(result == null) {
-                error = true;
-            } else {
-                contact[input.name] = value;
-            }
-        }
-    }
-
-    if(error == false) {
-        for (var i = 0; i < localStorage.length; i++){
-            let id = JSON.parse(localStorage.getItem(localStorage.key(i))).id;
-            products.push(id);
-        }
-
-        var jsonBody = {contact,products};
-        jsonBody = JSON.stringify(jsonBody);
-        
-        // return :
-        // {"contact":{"firstName":"hjnbk","lastName":"bikl","email":"bjvbhj@vhj.com","address":"bujo","city":"bvuo"},"products":["5beaa8bf1c9d440000a57d94"]}
-        
-
-        var request = new XMLHttpRequest();
-        request.onreadystatechange = function() {
-            if (this.readyState == XMLHttpRequest.DONE && this.status == 201) {
-                window.localStorage.clear();
-                console.log(this);
-                var response = JSON.parse(this.responseText);
-                window.location.href = "http://localhost/JWDP5/payment_confirmation?id_order=" + response.orderId;
-
-            }
-        };
-
-        let url = "http://localhost:3000/api/teddies/order";
-        request.open("POST", url);
-        request.setRequestHeader("Content-Type", "application/json");
-        request.send(jsonBody);
-        
-    } else {
-        alert('Une erreur est survenue dans le formulaire');
-    }
-}
-
-</script>
 </html>
