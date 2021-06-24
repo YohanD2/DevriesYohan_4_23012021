@@ -123,23 +123,26 @@ function validationForm(e){
             }
         }
 
-        var jsonBody = {contact,products};
-        jsonBody = JSON.stringify(jsonBody);
+        if (products.length != 0) {
+            var jsonBody = {contact,products};
+            jsonBody = JSON.stringify(jsonBody);
 
-        var request = new XMLHttpRequest();
-        request.onreadystatechange = function() {
-            if (this.readyState == XMLHttpRequest.DONE && this.status == 201) {
-                window.localStorage.clear();
-                var response = JSON.parse(this.responseText);
-                window.location.href = "http://localhost/JWDP5/payment_confirmation?id_order=" + response.orderId;
-            }
-        };
+            var request = new XMLHttpRequest();
+            request.onreadystatechange = function() {
+                if (this.readyState == XMLHttpRequest.DONE && this.status == 201) {
+                    window.localStorage.clear();
+                    var response = JSON.parse(this.responseText);
+                    window.location.href = "http://localhost/JWDP5/payment_confirmation?id_order=" + response.orderId;
+                }
+            };
 
-        let url = "http://localhost:3000/api/teddies/order";
-        request.open("POST", url);
-        request.setRequestHeader("Content-Type", "application/json");
-        request.send(jsonBody);
-        
+            let url = "http://localhost:3000/api/teddies/order";
+            request.open("POST", url);
+            request.setRequestHeader("Content-Type", "application/json");
+            request.send(jsonBody);
+        } else {
+            alert('Une erreur est survenue dans le formulaire');
+        }
     } else {
         alert('Une erreur est survenue dans le formulaire');
     }
