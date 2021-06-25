@@ -20,7 +20,7 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const productId = urlParams.get('id');
 
-API = "http://" + window.location.hostname + ":3000/api/teddies/" + productId;
+API = "http://localhost:3000/api/teddies/" + productId;
 
 fetch(API)
   .then(function(res) {
