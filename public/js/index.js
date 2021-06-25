@@ -9,7 +9,7 @@ for (var i = 0; i < localStorage.length; i++){
 countCard.textContent = nbProduct;
 
 var API = "http://" + window.location.hostname + ":3000/api/teddies/";
-fetch(API)
+fetch("http://localhost:3000/api/teddies/")
   .then(function(res) {
     if (res.ok) {
       return res.json();
