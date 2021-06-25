@@ -8,8 +8,8 @@ for (var i = 0; i < localStorage.length; i++){
 }
 countCard.textContent = nbProduct;
 
-var API = "http://" + window.location.hostname + ":3000/api/teddies/";
-fetch("http://localhost:3000/api/teddies/")
+var API = "https://" + window.location.hostname + ":3000/api/teddies/";
+fetch(API)
   .then(function(res) {
     if (res.ok) {
       return res.json();
