@@ -1,7 +1,8 @@
+
 // Call on click back button
 let back = document.getElementById('back');
 back.addEventListener("click", function (e) {
-    window.location.href = "http://localhost/JWDP5/";
+    window.location.href = "index.html";
 });
 
 // Check if cart is empty
@@ -20,7 +21,7 @@ if ( localStorage.length == 0 ) {
 let delete_cart = document.getElementById('deleteCart');
 delete_cart.addEventListener('click', function() {
     window.localStorage.clear();
-    window.location.href = "http://localhost/JWDP5/checkout";
+    window.location.href = "checkout.html";
 });
 
 let ul = document.getElementById('ul');
@@ -125,23 +126,28 @@ function validationForm(e){
 
         if (products.length != 0) {
             var jsonBody = {contact,products};
-            jsonBody = JSON.stringify(jsonBody);
 
-            var request = new XMLHttpRequest();
-            request.onreadystatechange = function() {
-                if (this.readyState == XMLHttpRequest.DONE && this.status == 201) {
-                    window.localStorage.clear();
-                    var response = JSON.parse(this.responseText);
-                    window.location.href = "http://localhost/JWDP5/payment_confirmation?id_order=" + response.orderId;
+            var API = "http://" + window.location.hostname + ":3000/api/teddies/order";
+
+            fetch(API, {
+                method: "POST",
+                headers: { 
+            'Accept': 'application/json', 
+            'Content-Type': 'application/json' 
+            },
+                body: JSON.stringify(jsonBody)
+            })
+            .then(function(res) {
+                if (res.ok) {
+                    return res.json();
                 }
-            };
-
-            let url = "http://localhost:3000/api/teddies/order";
-            request.open("POST", url);
-            request.setRequestHeader("Content-Type", "application/json");
-            request.send(jsonBody);
+            })
+            .then(function(value) {
+                window.localStorage.clear();
+                window.location.href = "payment_confirmation?id_order=" + value.orderId + "&price=" + total;
+            });
         } else {
-            alert('Une erreur est survenue dans le formulaire');
+            alert('Pas de produit dans votre panier');
         }
     } else {
         alert('Une erreur est survenue dans le formulaire');
