@@ -127,9 +127,7 @@ function validationForm(e){
         if (products.length != 0) {
             var jsonBody = {contact,products};
 
-            var API = "http://localhost:3000/api/teddies/order";
-
-            fetch(API, {
+            fetch("http://localhost:3000/api/teddies/order", {
                 method: "POST",
                 headers: { 
             'Accept': 'application/json', 
